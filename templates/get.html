@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    {% comment %} here the path for static is this bcoz we have kept the static
+    folder outside of app folder. {% endcomment %}
+    <title>Index</title>
+  </head>
+  <body>
+    <h2>TODO_TASK'S</h2>
+    <form action="{% url 'create' %}" method="post">
+      {% csrf_token %}
+      <label for="task_name">Add Task:</label><br />
+      <input type="text" id="task_name" name="task_name" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <br />
+    <br />
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Task</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+      {% for i in data %}
+      <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.task_name }}</td>
+        <td>
+          <form action="{% url 'delete_task'  i.id  %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button button1">Delete</button>
+          </form>
+        </td>
+        <td>
+          <button class="button button1">Update</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
