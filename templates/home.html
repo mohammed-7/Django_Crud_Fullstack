@@ -39,7 +39,9 @@
           </form>
         </td>
         <td>
-          <button class="button button1">Update</button>
+          <a href="{% url  'update_task' i.id %}">
+            <button class="button button1">Update</button>
+          </a>
         </td>
       </tr>
       {% endfor %}

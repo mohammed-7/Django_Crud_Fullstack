@@ -1,0 +1,12 @@
+<form action="{% url 'update_task' data.id %}" method="post">
+  {% csrf_token %}
+  <label for="task_name">Update Task:</label><br />
+  <input
+    type="text"
+    id="task_name"
+    name="task_name"
+    value="{{ data.task_name }}"
+  />
+  <br />
+  <input type="submit" value="Update" />
+</form>

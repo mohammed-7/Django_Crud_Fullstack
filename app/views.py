@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from .models import Task
 from django.db import connection
 # Create your views here.
 
 def home(request):
-    return render(request, 'Home.html')
+    data = Task.objects.all()
+    return render(request, 'Home.html',{"data":data})
 
 def create(request):
     if request.method == "POST":
@@ -35,3 +36,14 @@ def delete_task(request,id):
 def get_task(request):
     data = Task.objects.all()
     return render(request,'get.html',{"data":data})
+
+def update_task(request,id):
+    data = Task.objects.get(id=id)
+    
+    if request.method == "POST":
+        data.task_name = request.POST['task_name']
+        data.save()
+        return redirect('home')   
+    return render(request,'update.html',{"data":data})
+        
+    
