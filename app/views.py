@@ -7,6 +7,10 @@ def home(request):
     data = Task.objects.all()
     return render(request, 'Home.html',{"data":data})
 
+def get_task(request):
+    data = Task.objects.all()
+    return render(request,'get.html',{"data":data})
+
 def create(request):
     if request.method == "POST":
         task_name = request.POST.get("task_name")
@@ -17,13 +21,6 @@ def create(request):
             return render(request,"home.html",{"data":data})
     return render(request,"home.html")
 
-
-
-# def delete_task(request,id):
-#     object = Task.objects.get(id=id)
-#     data = Task.objects.all()
-#     object.delete()
-#     return render(request,"delete.html",{"data":data})
 def delete_task(request,id):
     object = Task.objects.get(id=id)
     object.delete()
@@ -33,9 +30,7 @@ def delete_task(request,id):
     data = Task.objects.all()
     return render(request,"home.html",{"data":data})
             
-def get_task(request):
-    data = Task.objects.all()
-    return render(request,'get.html',{"data":data})
+
 
 def update_task(request,id):
     data = Task.objects.get(id=id)
