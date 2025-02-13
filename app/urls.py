@@ -8,5 +8,4 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete_task, name='delete_task'),
     path("get",views.get_task,name='get_task'),
     path("update/<int:id>/",views.update_task,name='update_task'),
-
 ]

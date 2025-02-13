@@ -34,7 +34,6 @@ def delete_task(request,id):
 
 def update_task(request,id):
     data = Task.objects.get(id=id)
-    
     if request.method == "POST":
         data.task_name = request.POST['task_name']
         data.save()
