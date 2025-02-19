@@ -30,8 +30,6 @@ def delete_task(request,id):
     data = Task.objects.all()
     return render(request,"home.html",{"data":data})
             
-
-
 def update_task(request,id):
     data = Task.objects.get(id=id)
     if request.method == "POST":
